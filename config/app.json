@@ -1,10 +1,10 @@
   {
-    "destName": "module_user_dev_",
+    "destName": "blog",
     "managerUserRole":true,
     "lang":"FR",
     "host": "localhost",
     "port": 3306,
-    "database": "module_user",
+    "database": "blog",
     "user": "root",
     "password": ""
   }
