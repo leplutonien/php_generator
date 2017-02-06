@@ -116,8 +116,6 @@ class ManagerUserRole{
      * @return ManagerUserRole
      */
     public static function getManagerUserAccess(){
-        echo get_class(self::$managerUserAccess);
         return self::$managerUserAccess;
     }
-
 }
