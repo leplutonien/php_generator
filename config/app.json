@@ -1,0 +1,10 @@
+  {
+    "destName": "module_user_dev_",
+    "managerUserRole":true,
+    "lang":"FR",
+    "host": "localhost",
+    "port": 3306,
+    "database": "module_user",
+    "user": "root",
+    "password": ""
+  }

@@ -1,0 +1,14 @@
+[
+  {
+    "url": "/posts",
+    "module": "posts",
+    "action": "get_all"
+  },
+  {
+    "url": "/posts/([1-9]+)",
+    "vars":["id_post"],
+    "module": "posts",
+    "action": "get_post",
+    "comment":" return a specific post"
+  }
+]
