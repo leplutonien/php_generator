@@ -16,42 +16,30 @@ class ManagerUserRole{
      */
     private $currentUser;
     /**
-     * role of current user
-     */
-    private $currentUserRole;
-    /**
      * All accesses of the current user
      */
     private $access;
 
-    public function __construct(\entities\User $currentUser){
+    public function __construct(\entities\Users $currentUser){
         $this->currentUser = $currentUser;
-        $role = Roles::findByAttribute(array(
-                'id_r' => $currentUser->getIdR()
-            )
-        )[0];
 
-        if(!is_null($role)){
-            $this->currentUserRole = $role;
-            //get the accesses defined for the role
-            $rows = null;
-            $sql = 'SELECT am.id_am, am.id_m, am.id_a from actions_on_modules am, have_roles hr '.
-                'WHERE am.id_am = hr.id_am AND hr.id_r= :role';
+        //get the accesses defined for all roles
+        $rows = null;
+        $sql = ' select am.id_m , am.id_a from actions_on_modules am, roles_access ra, users_roles ur, users u '.
+            'where u.id_user = ur.id_user and ur.id_ra = ra.id_ra and ra.id_am = am.id_am and u.id_user = :id_user';
 
-            $sqlQuery = new SqlQuery($sql);
-            $sqlQuery->setParams('role',$role->getIdR());
-            $resultSet = $sqlQuery->execute();
-            $resultSet->getAllRows();
+        $sqlQuery = new SqlQuery($sql);
+        $sqlQuery->setParams('id_user',$this->currentUser->getIdUser());
+        $resultSet = $sqlQuery->execute();
+        $resultSet->getAllRows();
 
-            while ($r = $resultSet->nextRow())
-                $rows [] = new ActionsOnModules($r);
+        while ($r = $resultSet->nextRow())
+            $rows [] = new ActionsOnModules($r);
 
-            $this->access = $rows;
+        $this->access = $rows;
 
-            self::$managerUserAccess = $this;
-        }else{
-            throw new \InvalidArgumentException('No User role has defined. ');
-        }
+        self::$managerUserAccess = $this;
+
     }
 
     /**
@@ -97,19 +85,11 @@ class ManagerUserRole{
         return false;
     }
 
-
     /**
      * @return get Information about the current user
      */
     public function getCurrentUser(){
         return $this->currentUser;
-    }
-
-    /**
-     * @return get role of current user
-     */
-    public function getCurrentUserRole(){
-        return $this->currentUserRole;
     }
 
     /**
