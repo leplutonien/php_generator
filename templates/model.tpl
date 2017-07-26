@@ -42,16 +42,31 @@ class ${entityName}Dao implements \lib\dao\CRUD{
     }
 
     /**
+     * Delete record in table
+     * @param $${fctParam}
+     * @return $status
+   */
+    public function delete($${fctParam}){
+        if(get_class($${fctParam}) == 'entities\${entityName}'){
+            $sql = 'DELETE FROM ${table_name} WHERE WHERE ${majConds}';
+            $sqlQuery = new SqlQuery($sql);${params}
+            $resultSet = $sqlQuery->execute();
+            return $resultSet->getStatus();
+        }else
+            throw new \RuntimeException('The input variable is not an object of class ${entityName}');
+    }
+
+    /**
      *Delete record in table
-     * @param array of primaryKeys
+     * @param array of conditions
      * @return $status
      */
-    public function delete(array $primaryKeys_entity){
+    public function delete(array $conds){
         $sql = 'DELETE FROM ${table_name} WHERE ';
-        if (is_array($primaryKeys_entity) && !empty($primaryKeys_entity)){
+        if (is_array($conds) && !empty($conds)){
             //complete the sql query
-            $count = count($primaryKeys_entity);
-            foreach ($primaryKeys_entity as $attribute => $value){
+            $count = count($conds);
+            foreach ($conds as $attribute => $value){
                 $sql.= $attribute.' = :'.strtolower($attribute);
                 $count --;
                 if($count != 0){
@@ -59,7 +74,7 @@ class ${entityName}Dao implements \lib\dao\CRUD{
                 }
             }
             $sqlQuery = new SqlQuery($sql);
-            foreach ($primaryKeys_entity as $attribute => $value)
+            foreach ($conds as $attribute => $value)
                 $sqlQuery->setParams(strtolower($attribute), $value);
 
             $resultSet = $sqlQuery->execute();

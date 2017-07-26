@@ -1,7 +1,6 @@
 <?php
 namespace additionals\user_role;
 use entities\ActionsOnModules;
-use entities\Roles;
 use lib\sql\SqlQuery;
 
 /**

@@ -2,6 +2,7 @@
   {
     "url": "/posts",
     "module": "posts",
+    "method":"post",
     "action": "get_all"
   },
   {

@@ -271,6 +271,7 @@ class generate {
              $entityFile->setKey('entity_dao_call', "self::$".lcfirst($entityName).'Dao'." = new ".$entityName."Dao();");
              $entityFile->setKey('insert', "return self::$".lcfirst($entityName)."Dao->insert(\$this);");
              $entityFile->setKey('update', "return self::$".lcfirst($entityName)."Dao->update(\$this);");
+             $entityFile->setKey('_delete', "return self::$".lcfirst($entityName)."Dao->delete(\$this);");
              $entityFile->setKey('delete', "return self::$".lcfirst($entityName)."Dao->delete(\$primaryKeys_entity);");
              $entityFile->setKey('findAll', "return self::$".lcfirst($entityName)."Dao->findAll(\$begin , \$end);");
              $entityFile->setKey('countRows', "return self::$".lcfirst($entityName)."Dao->countRows();");

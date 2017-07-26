@@ -1,5 +1,3 @@
-create database if not exists module_user DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-use module_user;
 DROP TABLE IF EXISTS modules ;
 CREATE TABLE modules(
 	id_m INT(3) NOT NULL,
