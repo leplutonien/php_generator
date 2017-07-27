@@ -46,10 +46,10 @@ class ${entityName}Dao implements \lib\dao\CRUD{
      * @param $${fctParam}
      * @return $status
    */
-    public function delete($${fctParam}){
+    public function remove($${fctParam}){
         if(get_class($${fctParam}) == 'entities\${entityName}'){
-            $sql = 'DELETE FROM ${table_name} WHERE WHERE ${majConds}';
-            $sqlQuery = new SqlQuery($sql);${params}
+            $sql = 'DELETE FROM ${table_name} WHERE  ${majConds}';
+            $sqlQuery = new SqlQuery($sql);${dparams}
             $resultSet = $sqlQuery->execute();
             return $resultSet->getStatus();
         }else

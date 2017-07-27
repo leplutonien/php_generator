@@ -21,13 +21,13 @@ class ${entityName} extends \lib\dao\Entity{ ${variables}
         ${update}
     }
 
-    public static function delete(array conds){
-         self::loadDao();
-         ${delete}
+    public function remove(){
+         ${_delete}
     }
 
-    public static function delete(){
-         ${_delete}
+    public static function delete(array $conds){
+         self::loadDao();
+         ${delete}
     }
 
     public static function findAll($begin = -1, $end = -1){

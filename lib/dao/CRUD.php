@@ -14,7 +14,9 @@ interface Crud{
 
      public function update($entity);
 
-     public  function delete(array $primaryKeys_entity);
+     public  function remove($entity);
+
+     public  function delete(array $conds);
 
      public  function findAll($begin = -1, $end = -1);
 

@@ -90,6 +90,14 @@ class HTTPRequest
     {
         return $_SERVER['REQUEST_URI'];
     }
+
+    /**
+     * return SESSION_TOKEN
+     */
+    public function xSessionToken()
+    {
+        return isset($_SERVER['HTTP_X_SESSION_TOKEN']) ? $_SERVER['HTTP_X_SESSION_TOKEN'] : null;
+    }
 }
 
 ?>
