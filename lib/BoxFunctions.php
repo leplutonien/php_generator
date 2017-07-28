@@ -370,6 +370,18 @@ class BoxFunctions
         }
         return $ret;
     }
+
+    /**
+     * formate api response sending to client
+     * @param string $response
+     * @param string $message
+     * @param int $status
+     * @return string
+     */
+    public static function ApiResponse($response='null',$message='null',$status=0)
+    {
+        return '{"data":'.$response.',"message":'.$message.',"status":'.$status.'}';
+    }
 }
 
 ?>
