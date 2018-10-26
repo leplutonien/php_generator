@@ -59,3 +59,11 @@ DROP TABLE IF EXISTS modules ;
     ALTER TABLE roles_access ADD CONSTRAINT FK_4  FOREIGN KEY (id_r) REFERENCES roles(id_r);
     ALTER TABLE users_roles ADD CONSTRAINT FK_5  FOREIGN KEY (id_r) REFERENCES roles(id_r);
     ALTER TABLE users_roles ADD CONSTRAINT FK_6  FOREIGN KEY (id_user) REFERENCES users(id_user);
+
+-- insert rows in  actions
+INSERT INTO actions(id_a,name_a) VALUES
+  (1,'Create'),
+  (2,'Read'),
+  (3,'Update'),
+  (4,'Delete'),
+  (5,'Print');
