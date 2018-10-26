@@ -21,11 +21,10 @@ class ManagerUserRole{
 
     public function __construct(\entities\Users $currentUser){
         $this->currentUser = $currentUser;
-
         //get the accesses defined for all roles
         $rows = null;
         $sql = ' select distinct am.id_m , am.id_a from actions_on_modules am, roles_access ra, users_roles ur, users u '.
-            'where u.id_user = ur.id_user and ur.id_r = ra.id_r and ra.id_am = am.id_am and u.id_user = :id_user ';
+            'where u.id_user = ur.id_user and ur.id_r = ra.id_r and ra.id_am = am.id_am and u.id_user = :id_user';
 
         $sqlQuery = new SqlQuery($sql);
         $sqlQuery->setParams('id_user',$this->currentUser->getIdUser());
@@ -38,7 +37,6 @@ class ManagerUserRole{
         $this->access = $rows;
 
         self::$managerUserAccess = $this;
-
     }
 
     /**
@@ -89,6 +87,10 @@ class ManagerUserRole{
      */
     public function getCurrentUser(){
         return $this->currentUser;
+    }
+
+    public function  getAccess(){
+        return $this->access;
     }
 
     /**
