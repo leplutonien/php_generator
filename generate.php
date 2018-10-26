@@ -67,8 +67,6 @@ class generate {
             }
         }
 
-        var_dump($returnings);
-
         //generate a controller for each module
         if(count($actions) > 0) {
             foreach ($actions as $module => $action) {

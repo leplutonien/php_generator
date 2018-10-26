@@ -10,9 +10,10 @@ use lib\JsonReader;
 class Connection{
 
 	private static $connection = null;
+	private static $databaseConfig = "/app/config/app.json";
 
 	private function __construct(){
-		$configFile = dirname(dirname(dirname(__FILE__)))."/config/app.json";
+		$configFile = dirname(dirname(dirname(__FILE__))).self::$databaseConfig;
         $config = new JsonReader($configFile);
 		self::$connection =PDOFactory::getMysqlConnexion(
 			$config->getAttribute('host'),
@@ -33,5 +34,13 @@ class Connection{
 		}
     	return self::$connection;
     }
+
+	/**
+	 * get database config file
+	 * @return string
+	 */
+	public static function getDatabaseConfigFile(){
+		return self::$databaseConfig;
+	}
 }
 ?>
